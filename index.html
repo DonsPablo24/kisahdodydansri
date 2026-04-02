@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Undangan pernikahan Dody & Puspitasari" />
+  <meta name="theme-color" content="#BFA181" />
+  <title>Undangan Pernikahan | Dody & Puspitasari</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: '#BFA181',
+            dark: '#2A2A2A',
+            light: '#FDFBF7',
+            soft: '#F7F3EE'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif']
+          },
+          boxShadow: {
+            elegant: '0 18px 60px rgba(42, 42, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #FDFBF7;
+      --text: #2A2A2A;
+      --accent: #BFA181;
+      --muted: #7A7A7A;
+      --line: rgba(42, 42, 42, 0.12);
+    }
+
+    * { -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f6f1ea; }
+    ::-webkit-scrollbar-thumb {
+      background: #d5c7b7;
+      border-radius: 999px;
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(circle at top, rgba(191,161,129,.16), transparent 35%),
+        radial-gradient(circle at bottom, rgba(191,161,129,.07), transparent 30%),
+        linear-gradient(180deg, #fffdf9 0%, #fdfbf7 100%);
+    }
+
+    .section-pattern {
+      background-image:
+        linear-gradient(rgba(191,161,129,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191,161,129,.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      background-position: center;
+    }
+
+    .cover-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(253, 251, 247, 0.98);
+      backdrop-filter: blur(6px);
+      transition: opacity .8s ease, transform .8s ease, visibility .8s ease;
+    }
+
+    .cover-overlay.open {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-24px);
+      pointer-events: none;
+    }
+
+    .game-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .5s ease, visibility .5s ease;
+    }
+
+    .game-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(42,42,42,.08);
+      box-shadow: 0 20px 50px rgba(42,42,42,.06);
+      backdrop-filter: blur(8px);
+    }
+
+    .input-minimal {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid #d6d0c7;
+      background: transparent;
+      padding: .9rem 0;
+      font-size: .92rem;
+      color: var(--text);
+      transition: border-color .25s ease;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    .input-minimal::placeholder { color: #9b9b9b; }
+    .input-minimal:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+
+    .btn-outline, .btn-solid {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .85rem 1.4rem;
+      font-size: .75rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: all .28s ease;
+      border-radius: 999px;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(42,42,42,.75);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-solid {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-solid:hover {
+      filter: brightness(.95);
+      transform: translateY(-1px);
+    }
+
+    .ornament-line {
+      width: 82px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(191,161,129,.85), transparent);
+      margin: 0 auto;
+    }
+
+    .music-badge {
+      position: fixed;
+      right: 1rem;
+      bottom: 5.5rem;
+      z-index: 40;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 1rem;
+      z-index: 40;
+      width: min(92%, 420px);
+    }
+
+    .gallery-img {
+      transition: transform .45s ease, opacity .35s ease;
+    }
+
+    .gallery-img:hover {
+      transform: translateY(-4px) scale(1.01);
+      opacity: 1;
+    }
+
+    .count-box {
+      min-width: 66px;
+    }
+
+    .mempelai-photo-wrap {
+      position: relative;
+      z-index: 1;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .mempelai-photo-wrap.animating-origin {
+      opacity: 0;
+      transform: scale(.9);
+    }
+
+    .flying-photo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 128px;
+      height: 128px;
+      border-radius: 999px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 120;
+      box-shadow: 0 20px 50px rgba(42,42,42,.22);
+      border: 3px solid rgba(255,255,255,.9);
+      background: linear-gradient(135deg, #eadfce, #f8f4ee);
+      will-change: transform, opacity;
+    }
+
+    .flying-photo img, .flying-photo .fallback-icon {
+      width: 100%;
+      height: 100%;
+    }
+
+    .flying-photo img {
+      object-fit: cover;
+      display: block;
+    }
+
+    .flying-photo .fallback-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      background: linear-gradient(135deg, #eadfce, #f8f4ee);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    .photo-sprite-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 30;
+      overflow: hidden;
+    }
+
+    .photo-sprite {
+      position: fixed;
+      width: 88px;
+      height: 88px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,.95);
+      box-shadow: 0 14px 40px rgba(42,42,42,.22);
+      background: linear-gradient(135deg, #eadfce, #f8f4ee);
+      will-change: transform;
+    }
+
+    .photo-sprite img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  </style>
+</head>
+<body class="font-sans antialiased text-dark locked" id="body">
+  <audio id="bg-music" loop preload="auto" aria-hidden="true">
+    <source src="TITANIC __ Funkot Single.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div id="cover" class="cover-overlay hero-bg section-pattern">
+    <div class="w-full max-w-md px-6 text-center">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-gray-500 mb-5">Undangan Pernikahan</p>
+      <div class="ornament-line mb-5"></div>
+      <h1 class="font-serif text-5xl md:text-7xl leading-none mb-6">Dody <span class="italic text-accent">&</span> Puspitasari</h1>
+      <p class="text-sm tracking-[0.2em] uppercase text-gray-500 mb-10">Senin, 13 April 2026</p>
+
+      <div class="glass-card rounded-[32px] px-6 py-7 mb-8">
+        <p class="text-[11px] uppercase tracking-[0.24em] text-gray-500 mb-2">Kepada Yth.</p>
+        <p id="guest-name" class="text-xl font-medium leading-snug">Tamu Undangan</p>
+        <p class="text-[10px] text-gray-400 mt-3 italic">Mohon maaf apabila ada kesalahan penulisan nama atau gelar.</p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button onclick="startExperience()" class="btn-solid w-full">
+          <i data-lucide="music-4" class="w-4 h-4"></i>
+          Buka Undangan
+        </button>
+        <p class="text-[11px] leading-5 text-gray-400">Musik akan dicoba menyala otomatis saat halaman dibuka. Jika browser membatasi autoplay, musik akan menyala di interaksi pertama.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-modal" class="game-overlay hero-bg hidden">
+    <div class="w-full max-w-md glass-card rounded-[32px] p-7 text-center">
+      <p class="text-[11px] tracking-[0.28em] uppercase text-accent mb-4">Mini Quiz</p>
+      <h2 id="question-text" class="font-serif text-3xl leading-tight mb-7">Loading...</h2>
+      <div class="space-y-3">
+        <button id="btn-a" onclick="answerGame()" class="btn-outline w-full bg-white"></button>
+        <button id="btn-b" onclick="answerGame()" class="btn-outline w-full bg-white"></button>
+      </div>
+      <button onclick="finishGame()" class="mt-6 text-[11px] uppercase tracking-[0.18em] text-gray-400 hover:text-dark transition">Lewati Quiz</button>
+    </div>
+  </div>
+
+  <button id="music-toggle" class="music-badge hidden rounded-full border border-black/10 bg-white/90 backdrop-blur px-4 py-3 shadow-elegant" type="button" aria-label="Toggle musik" onclick="toggleMusic()">
+    <span class="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em]">
+      <i id="music-icon" data-lucide="pause" class="w-4 h-4"></i>
+      Musik
+    </span>
+  </button>
+
+  <main class="w-full max-w-md md:max-w-xl mx-auto min-h-screen bg-white shadow-elegant overflow-hidden">
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-8 py-16 hero-bg reveal">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-accent mb-5">The Wedding Of</p>
+      <div class="ornament-line mb-6"></div>
+      <h2 class="font-serif text-6xl md:text-7xl leading-[0.9] mb-6">Dody<br><span class="text-4xl italic text-gray-400">&</span><br>Puspitasari</h2>
+      <p class="text-sm tracking-[0.25em] uppercase text-gray-600">13 . 04 . 2026</p>
+      <p class="mt-8 text-sm text-gray-500 max-w-sm leading-relaxed">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir pada hari bahagia kami.</p>
+      <a href="#acara" class="mt-10 btn-outline">
+        <i data-lucide="calendar-days" class="w-4 h-4"></i>
+        Lihat Acara
+      </a>
+      <div class="absolute bottom-8 animate-bounce text-gray-300">
+        <i data-lucide="chevron-down" class="w-7 h-7"></i>
+      </div>
+    </section>
+
+    <section class="py-20 px-8 text-center reveal">
+      <i data-lucide="quote" class="w-8 h-8 mx-auto text-accent/60 mb-6"></i>
+      <p class="font-serif text-2xl leading-relaxed italic text-gray-700">“Cinta tidak berupa tatapan satu sama lain, tetapi memandang ke luar bersama ke arah yang sama.”</p>
+      <p class="text-[11px] uppercase tracking-[0.26em] text-gray-400 mt-6">Antoine de Saint-Exupéry</p>
+    </section>
+
+    <section id="mempelai" class="py-20 px-8 bg-soft border-y border-black/5 reveal text-center">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-gray-500 mb-10">Mempelai</p>
+
+      <div class="glass-card rounded-[28px] px-6 py-8">
+        <div class="mb-12">
+          <div id="groom-photo-wrap" class="mempelai-photo-wrap w-32 h-32 rounded-full mx-auto mb-5 overflow-hidden border border-black/5 shadow-sm bg-gradient-to-br from-[#eadfce] to-[#f8f4ee]">
+            <img id="groom-photo-img" src="groom.jpg" alt="Foto Dody" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="w-full h-full hidden items-center justify-center text-accent">
+              <i data-lucide="user-round" class="w-10 h-10"></i>
+            </div>
+          </div>
+          <p class="text-[10px] uppercase tracking-[0.22em] text-gray-400 mb-3">Foto Mempelai Pria</p>
+          <h3 class="font-serif text-3xl mb-3">Dody Pebrianto Yanuar</h3>
+          <a href="#" class="inline-flex items-center gap-2 mt-5 text-xs text-accent hover:text-dark transition">
+            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+            @donspablo
+          </a>
+        </div>
+
+        <div class="font-serif text-4xl italic text-accent/60 mb-12">&</div>
+
+        <div>
+          <div id="bride-photo-wrap" class="mempelai-photo-wrap w-32 h-32 rounded-full mx-auto mb-5 overflow-hidden border border-black/5 shadow-sm bg-gradient-to-br from-[#eadfce] to-[#f8f4ee]">
+            <img id="bride-photo-img" src="bride.jpg" alt="Foto Puspitasari" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="w-full h-full hidden items-center justify-center text-accent">
+              <i data-lucide="flower-2" class="w-10 h-10"></i>
+            </div>
+          </div>
+          <p class="text-[10px] uppercase tracking-[0.22em] text-gray-400 mb-3">Foto Mempelai Wanita</p>
+          <h3 class="font-serif text-4xl mb-3">Sri Puspitasari Nurhasanah</h3>
+          <a href="#" class="inline-flex items-center gap-2 mt-5 text-xs text-accent hover:text-dark transition">
+            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+            @sripuspita
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-8 reveal text-center">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-gray-500 mb-10">Galeri Kasih</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-4">
+          <img src="1.jpeg" alt="Galeri prewedding 1" class="gallery-img w-full object-cover aspect-[3/4] rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="2.jpeg" alt="Galeri prewedding 2" class="gallery-img w-full object-cover aspect-square rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="3.jpeg" alt="Galeri prewedding 1" class="gallery-img w-full object-cover aspect-[3/4] rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="4.jpeg" alt="Galeri prewedding 2" class="gallery-img w-full object-cover aspect-square rounded-2xl shadow-sm opacity-95" loading="lazy">
+        </div>
+        <div class="flex flex-col gap-4 pt-8">
+          <img src="5.jpeg" alt="Galeri prewedding 3" class="gallery-img w-full object-cover aspect-square rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="6.jpeg" alt="Galeri prewedding 4" class="gallery-img w-full object-cover aspect-[3/4] rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="7.jpeg" alt="Galeri prewedding 3" class="gallery-img w-full object-cover aspect-square rounded-2xl shadow-sm opacity-95" loading="lazy">
+          <img src="8.jpeg" alt="Galeri prewedding 4" class="gallery-img w-full object-cover aspect-[3/4] rounded-2xl shadow-sm opacity-95" loading="lazy">
+        </div>
+      </div>
+      <p class="mt-5 text-xs text-gray-400">Ganti semua foto di atas dengan foto prewedding asli Anda.</p>
+    </section>
+
+    <section id="acara" class="py-20 px-8 bg-soft border-y border-black/5 reveal text-center">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-gray-500 mb-10">Rangkaian Acara</p>
+
+      <div class="space-y-6">
+        <article class="rounded-[28px] border border-black/10 bg-white p-8 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.24em] text-accent mb-2">Acara Inti</p>
+          <h4 class="font-serif text-3xl mb-2">Akad Nikah</h4>
+          <p class="text-sm font-medium mb-1">Senin, 13 April 2026</p>
+          <p class="text-sm text-gray-600 mb-5">Pukul 09:00 WIB – Selesai</p>
+          <p class="text-sm text-gray-500 leading-7 mb-6">
+            <strong>Rumah Mempelai Wanita</strong><br>
+            JL Duren , Restya Salon
+          </p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-outline">Lihat Lokasi</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="py-16 px-8 bg-dark text-light text-center reveal">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-white/60 mb-4">Hitung Mundur</p>
+      <h3 class="font-serif text-3xl mb-8">Menuju Hari Bahagia</h3>
+      <div class="flex items-center justify-center gap-3 md:gap-5 font-sans flex-wrap">
+        <div class="count-box">
+          <div id="days" class="text-4xl md:text-5xl font-light">00</div>
+          <div class="text-[10px] uppercase tracking-[0.25em] text-white/60 mt-1">Hari</div>
+        </div>
+        <div class="text-2xl text-white/35">:</div>
+        <div class="count-box">
+          <div id="hours" class="text-4xl md:text-5xl font-light">00</div>
+          <div class="text-[10px] uppercase tracking-[0.25em] text-white/60 mt-1">Jam</div>
+        </div>
+        <div class="text-2xl text-white/35">:</div>
+        <div class="count-box">
+          <div id="minutes" class="text-4xl md:text-5xl font-light">00</div>
+          <div class="text-[10px] uppercase tracking-[0.25em] text-white/60 mt-1">Menit</div>
+        </div>
+        <div class="text-2xl text-white/35">:</div>
+        <div class="count-box">
+          <div id="seconds" class="text-4xl md:text-5xl font-light">00</div>
+          <div class="text-[10px] uppercase tracking-[0.25em] text-white/60 mt-1">Detik</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp" class="py-20 px-8 reveal text-center">
+      <p class="text-[11px] tracking-[0.35em] uppercase text-gray-500 mb-10">Kehadiran & Ucapan</p>
+      <div class="max-w-md mx-auto rounded-[28px] border border-black/10 bg-white px-6 py-8 shadow-sm text-left">
+        <form id="rsvp-form" class="space-y-6">
+          <div>
+            <label for="nama" class="text-[11px] uppercase tracking-[0.2em] text-gray-400">Nama</label>
+            <input id="nama" name="nama" type="text" placeholder="Nama lengkap" class="input-minimal" required>
+          </div>
+          <div>
+            <label for="kehadiran" class="text-[11px] uppercase tracking-[0.2em] text-gray-400">Konfirmasi</label>
+            <select id="kehadiran" name="kehadiran" class="input-minimal" required>
+              <option value="" selected disabled>Pilih kehadiran</option>
+              <option value="Hadir">Ya, saya akan hadir</option>
+              <option value="Tidak Hadir">Maaf, saya belum bisa hadir</option>
+            </select>
+          </div>
+          <div>
+            <label for="jumlah" class="text-[11px] uppercase tracking-[0.2em] text-gray-400">Jumlah Tamu</label>
+            <input id="jumlah" name="jumlah" type="number" min="1" max="5" value="1" class="input-minimal">
+          </div>
+          <div>
+            <label for="ucapan" class="text-[11px] uppercase tracking-[0.2em] text-gray-400">Ucapan & Doa</label>
+            <textarea id="ucapan" name="ucapan" rows="4" placeholder="Tuliskan doa terbaik untuk mempelai" class="input-minimal resize-none"></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <button type="submit" class="btn-solid w-full">Kirim RSVP</button>
+            <button type="button" onclick="saveWishLocally()" class="btn-outline w-full">Simpan di HP</button>
+          </div>
+          <p class="text-xs text-gray-400 leading-6">Form ini sudah bisa dipakai untuk demo/static hosting. Agar RSVP masuk ke database/Google Sheet/WhatsApp admin otomatis, sambungkan fungsi submit ke backend pilihan Anda.</p>
+        </form>
+        <p id="rsvp-message" class="hidden mt-5 text-sm rounded-2xl px-4 py-3"></p>
+      </div>
+    </section>
+
+    <section class="py-20 px-8 bg-soft border-y border-black/5 text-center reveal">
+      <i data-lucide="gift" class="w-6 h-6 mx-auto text-accent mb-5"></i>
+      <h3 class="font-serif text-3xl mb-4">Tanda Kasih</h3>
+      <p class="text-sm text-gray-500 leading-7 mb-8 max-w-sm mx-auto">Doa restu Anda adalah hadiah terbaik. Namun jika Anda ingin memberikan tanda kasih, dapat melalui informasi berikut.</p>
+
+      <div class="space-y-4 max-w-sm mx-auto">
+        <div class="rounded-[24px] border border-black/10 bg-white p-6 shadow-sm">
+          <p class="font-semibold text-sm mb-1">ERC20 ADDRESS</p>
+          <p id="rek-bca" class="text-xl tracking-[0.18em] mb-2">dons.base.eth</p>
+          <p class="text-xs text-gray-500 mb-4">NO RECEIVE BITCOIN</p>
+          <button onclick="copyText('1234567890', 'Nomor rekening BCA berhasil disalin.')" class="btn-outline w-full">Salin No. Rekening</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-14 px-8 text-center reveal">
+      <p class="font-serif text-3xl mb-2">Dody & Puspitasari</p>
+      <p class="text-[11px] tracking-[0.28em] uppercase text-gray-400 mb-5">13 . 04 . 2026</p>
+      <p class="text-sm text-gray-500 leading-7 max-w-sm mx-auto">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+    </footer>
+  </main>
+
+  <nav class="bottom-nav hidden md:block">
+    <div class="rounded-full border border-black/10 bg-white/90 backdrop-blur shadow-elegant px-4 py-3">
+      <div class="grid grid-cols-4 text-center text-[10px] uppercase tracking-[0.16em] text-gray-500">
+        <a href="#mempelai" class="hover:text-dark transition">Mempelai</a>
+        <a href="#acara" class="hover:text-dark transition">Acara</a>
+        <a href="#rsvp" class="hover:text-dark transition">RSVP</a>
+        <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="hover:text-dark transition">Atas</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const qs = new URLSearchParams(window.location.search);
+    const guestName = qs.get('to') || qs.get('nama') || qs.get('guest');
+    const guestEl = document.getElementById('guest-name');
+    if (guestName && guestEl) {
+      guestEl.textContent = decodeURIComponent(guestName.replace(/\+/g, ' '));
+    }
+
+    lucide.createIcons();
+
+    const questions = [
+      { q: 'Siapa yang paling sering ngaret saat janjian?', a: 'Dody', b: 'Puspita' },
+      { q: 'Siapa yang paling gampang ngambek tapi cepat luluh?', a: 'Dody', b: 'Puspita' },
+      { q: 'Siapa yang paling bucin di hubungan ini?', a: 'Dody', b: 'Puspita' }
+    ];
+
+    let currentQ = 0;
+    let musicStarted = false;
+    let autoplayBound = false;
+    let spriteLoopId = null;
+    let activeSprites = [];
+    let mempelaiEnteredAt = 0;
+    let lastSpriteFrameAt = 0;
+    const body = document.getElementById('body');
+    const cover = document.getElementById('cover');
+    const gameModal = document.getElementById('game-modal');
+    const bgMusic = document.getElementById('bg-music');
+    const musicToggleBtn = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    const mempelaiSection = document.getElementById('mempelai');
+    const spriteLayer = (() => {
+      const existingLayer = document.getElementById('photo-sprite-layer');
+      if (existingLayer) return existingLayer;
+      const layer = document.createElement('div');
+      layer.id = 'photo-sprite-layer';
+      layer.className = 'photo-sprite-layer';
+      document.body.appendChild(layer);
+      return layer;
+    })();
+
+    function safePlayMusic() {
+      if (!bgMusic) return Promise.resolve(false);
+      return bgMusic.play().then(() => {
+        musicStarted = true;
+        updateMusicButton();
+        return true;
+      }).catch(() => {
+        musicStarted = false;
+        updateMusicButton();
+        return false;
+      });
+    }
+
+    function bindAutoplayFallback() {
+      if (autoplayBound) return;
+      autoplayBound = true;
+
+      const triggerAutoplay = async () => {
+        const started = await safePlayMusic();
+        if (started) {
+          ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'].forEach((eventName) => {
+            window.removeEventListener(eventName, triggerAutoplay, true);
+          });
+        }
+      };
+
+      ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'].forEach((eventName) => {
+        window.addEventListener(eventName, triggerAutoplay, { passive: true, capture: true, once: false });
+      });
+    }
+
+    function startExperience() {
+      safePlayMusic();
+      openInvitation();
+    }
+
+    function openInvitation() {
+      cover.classList.add('open');
+      body.classList.remove('locked');
+      musicToggleBtn.classList.remove('hidden');
+      if (gameModal) gameModal.classList.remove('show');
+      safePlayMusic();
+      reveal();
+      window.setTimeout(() => reveal(), 250);
+      window.setTimeout(() => reveal(), 700);
+    }
+
+    function showQuestion() {
+      const questionText = document.getElementById('question-text');
+      const btnA = document.getElementById('btn-a');
+      const btnB = document.getElementById('btn-b');
+
+      if (currentQ < questions.length) {
+        questionText.textContent = questions[currentQ].q;
+        btnA.textContent = questions[currentQ].a;
+        btnB.textContent = questions[currentQ].b;
+      } else {
+        gameModal.querySelector('div').innerHTML = `
+          <div class="text-center">
+            <p class="text-[11px] tracking-[0.28em] uppercase text-accent mb-4">Selesai</p>
+            <h3 class="font-serif text-4xl mb-4">Yeay! 🎉</h3>
+            <p class="text-sm text-gray-600 leading-7 mb-8">Apapun jawabanmu, yang pasti Dody &amp; Puspita kini saling melengkapi. Yuk, lanjut lihat undangannya.</p>
+            <button onclick="finishGame()" class="btn-solid">Lihat Undangan</button>
+          </div>
+        `;
+      }
+      lucide.createIcons();
+    }
+
+    function answerGame() {
+      currentQ += 1;
+      showQuestion();
+    }
+
+    function finishGame() {
+      if (gameModal) gameModal.classList.remove('show');
+      body.classList.remove('locked');
+      musicToggleBtn.classList.remove('hidden');
+      safePlayMusic();
+      reveal();
+      window.setTimeout(() => reveal(), 250);
+      window.setTimeout(() => reveal(), 700);
+    }
+
+
+    function isMempelaiInView() {
+      if (!mempelaiSection) return false;
+      const rect = mempelaiSection.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.82 && rect.bottom > window.innerHeight * 0.18;
+    }
+
+    function resetMempelaiSprites() {
+      activeSprites.forEach((spriteObj) => {
+        if (spriteObj.wrap) spriteObj.wrap.style.opacity = '1';
+        if (spriteObj.el && spriteObj.el.remove) spriteObj.el.remove();
+      });
+      activeSprites = [];
+      mempelaiEnteredAt = 0;
+      if (spriteLoopId) {
+        cancelAnimationFrame(spriteLoopId);
+        spriteLoopId = null;
+      }
+    }
+
+    function createSpriteFromPhoto(photoId, wrapId, config = {}) {
+      const photo = document.getElementById(photoId);
+      const wrap = document.getElementById(wrapId);
+      if (!photo || !wrap || !spriteLayer) return null;
+
+      const rect = wrap.getBoundingClientRect();
+      const size = Math.max(84, Math.min(rect.width, rect.height));
+      const sprite = document.createElement('div');
+      sprite.className = 'photo-sprite';
+      sprite.style.width = `${size}px`;
+      sprite.style.height = `${size}px`;
+      sprite.style.left = '0px';
+      sprite.style.top = '0px';
+      sprite.innerHTML = `<img src="${photo.getAttribute('src')}" alt="${photo.getAttribute('alt') || 'Foto mempelai'}">`;
+      spriteLayer.appendChild(sprite);
+
+      return {
+        el: sprite,
+        x: rect.left,
+        y: rect.top,
+        vx: config.vx || 7,
+        vy: config.vy || 6,
+        rotation: 0,
+        spin: config.spin || 8,
+        delay: config.delay || 500,
+        hiddenOriginal: false,
+        wrap,
+        size,
+      };
+    }
+
+    function startMempelaiSprites() {
+      if (activeSprites.length || !isMempelaiInView()) return;
+      const groomSprite = createSpriteFromPhoto('groom-photo-img', 'groom-photo-wrap', { vx: 8.5, vy: 6.5, spin: 9, delay: 500 });
+      const brideSprite = createSpriteFromPhoto('bride-photo-img', 'bride-photo-wrap', { vx: -7.5, vy: 7.2, spin: -10, delay: 650 });
+      activeSprites = [groomSprite, brideSprite].filter(Boolean);
+      mempelaiEnteredAt = performance.now();
+      lastSpriteFrameAt = 0;
+      if (activeSprites.length) runMempelaiSprites();
+    }
+
+    function runMempelaiSprites(now = 0) {
+      if (!isMempelaiInView()) {
+        resetMempelaiSprites();
+        return;
+      }
+
+      if (!lastSpriteFrameAt) lastSpriteFrameAt = now;
+      const delta = Math.min(32, now - lastSpriteFrameAt || 16.67);
+      lastSpriteFrameAt = now;
+      const factor = delta / 16.67;
+      const elapsed = now - mempelaiEnteredAt;
+
+      activeSprites.forEach((spriteObj) => {
+        if (!spriteObj || !spriteObj.el) return;
+
+        if (elapsed >= spriteObj.delay && !spriteObj.hiddenOriginal) {
+          spriteObj.wrap.style.opacity = '0';
+          spriteObj.hiddenOriginal = true;
+        }
+
+        if (elapsed >= spriteObj.delay) {
+          const maxX = Math.max(0, window.innerWidth - spriteObj.size);
+          const maxY = Math.max(0, window.innerHeight - spriteObj.size);
+          spriteObj.x += spriteObj.vx * factor;
+          spriteObj.y += spriteObj.vy * factor;
+          spriteObj.rotation += spriteObj.spin * factor;
+
+          if (spriteObj.x <= 0 || spriteObj.x >= maxX) {
+            spriteObj.vx *= -1;
+            spriteObj.x = Math.max(0, Math.min(spriteObj.x, maxX));
+          }
+
+          if (spriteObj.y <= 0 || spriteObj.y >= maxY) {
+            spriteObj.vy *= -1;
+            spriteObj.y = Math.max(0, Math.min(spriteObj.y, maxY));
+          }
+        }
+
+        spriteObj.el.style.transform = `translate3d(${spriteObj.x}px, ${spriteObj.y}px, 0) rotate(${spriteObj.rotation}deg)`;
+      });
+
+      spriteLoopId = requestAnimationFrame(runMempelaiSprites);
+    }
+
+    function handleMempelaiAnimation() {
+      if (isMempelaiInView()) {
+        startMempelaiSprites();
+      } else if (activeSprites.length) {
+        resetMempelaiSprites();
+      }
+    }
+
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      reveals.forEach((el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+
+      handleMempelaiAnimation();
+    }
+
+    window.addEventListener('scroll', reveal, { passive: true });
+    window.addEventListener('resize', handleMempelaiAnimation, { passive: true });
+    window.addEventListener('load', () => {
+      reveal();
+      safePlayMusic().then((started) => {
+        if (!started) bindAutoplayFallback();
+      });
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        resetMempelaiSprites();
+        return;
+      }
+      if (bgMusic && bgMusic.paused) safePlayMusic();
+      handleMempelaiAnimation();
+    });
+
+    const weddingDate = new Date('2026-04-13T08:00:00+07:00').getTime();
+    const countdownIds = ['days', 'hours', 'minutes', 'seconds'];
+
+    function setCountdown(values) {
+      countdownIds.forEach((id, index) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(values[index]).padStart(2, '0');
+      });
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        setCountdown([0, 0, 0, 0]);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+      setCountdown([days, hours, minutes, seconds]);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    async function copyText(text, successMessage = 'Berhasil disalin.') {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-9999px';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          textArea.remove();
+        }
+        showToast(successMessage);
+      } catch (error) {
+        showToast('Gagal menyalin. Silakan salin manual.');
+      }
+    }
+
+    function showToast(message) {
+      const existing = document.getElementById('toast-msg');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'toast-msg';
+      toast.className = 'fixed left-1/2 -translate-x-1/2 top-5 z-[100] rounded-full bg-dark text-light px-5 py-3 text-xs tracking-[0.12em] uppercase shadow-elegant';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2200);
+    }
+
+    function toggleMusic() {
+      if (!bgMusic) return;
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicStarted = true;
+          updateMusicButton();
+        }).catch(() => showToast('Browser menolak autoplay. Coba tap lagi.'));
+      } else {
+        bgMusic.pause();
+        updateMusicButton();
+      }
+    }
+
+    function updateMusicButton() {
+      if (!musicIcon) return;
+      musicIcon.setAttribute('data-lucide', bgMusic && !bgMusic.paused ? 'pause' : 'play');
+      lucide.createIcons();
+    }
+
+    document.getElementById('rsvp-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = new FormData(event.target);
+      const nama = form.get('nama') || '-';
+      const kehadiran = form.get('kehadiran') || '-';
+      const jumlah = form.get('jumlah') || '-';
+      const ucapan = form.get('ucapan') || '-';
+
+      localStorage.setItem('wedding_rsvp_demo', JSON.stringify({
+        nama, kehadiran, jumlah, ucapan, submittedAt: new Date().toISOString()
+      }));
+
+      const msg = document.getElementById('rsvp-message');
+      msg.className = 'mt-5 text-sm rounded-2xl px-4 py-3 bg-green-50 text-green-700 border border-green-200';
+      msg.textContent = `Terima kasih, ${nama}. RSVP demo berhasil disimpan di browser ini.`;
+      msg.classList.remove('hidden');
+      event.target.reset();
+    });
+
+    function saveWishLocally() {
+      const nama = document.getElementById('nama').value || 'Tamu';
+      const ucapan = document.getElementById('ucapan').value || 'Selamat menempuh hidup baru.';
+      const content = `Ucapan untuk Dody & Puspitasari\n\nNama: ${nama}\nUcapan: ${ucapan}`;
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ucapan-untuk-mempelai.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast('Ucapan berhasil disimpan.');
+    }
+  </script>
+</body>
+</html>
